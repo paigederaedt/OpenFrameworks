@@ -7,9 +7,7 @@ public:
     ofVec2f pos;
     ofTrueTypeFont ttfword;
     string word;
-    bool bFirst;
     float size;
-    float endTime;
     ofColor color;
     
     ofVec2f vel;

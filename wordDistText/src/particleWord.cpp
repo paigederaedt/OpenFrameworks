@@ -76,7 +76,7 @@ void particleWord::draw(){
     midPt.set( boundingBox.x + boundingBox.width / 2.0, boundingBox.y + boundingBox.height / 2.0);
     
     ofSetColor(color);
-    color.a = ofMap(cos(ofGetElapsedTimef() - endTime), -1, 1, 40, 255);
+    color.a = ofMap(cos(ofGetElapsedTimef()), -1, 1, 40, 255);
     float newSize = ofMap(size, 0, ofGetElapsedTimef(), 0.1, 2.0);
     
     ofPushMatrix(); {
@@ -86,32 +86,32 @@ void particleWord::draw(){
         //ofRect(-midPt.x, midPt.y, boundingBox.width, boundingBox.height);
     } ofPopMatrix();
     
-//    ofRectangle scaledRect;
-//    scaledRect.width = boundingBox.width * newSize;
-//    scaledRect.height = boundingBox.height * newSize;
-//    ofRect(0,0, scaledRect.width, scaledRect.height);
+    //    ofRectangle scaledRect;
+    //    scaledRect.width = boundingBox.width * newSize;
+    //    scaledRect.height = boundingBox.height * newSize;
+    //    ofRect(0,0, scaledRect.width, scaledRect.height);
     
     textBound.set(pos.x, pos.y, boundingBox.width * newSize, boundingBox.height * newSize);
     
-
+    
 }
 
 
 //------------------------------------------------------------
 particleWord::particleWord(){
-    //setInitialCondition(ofRandom(100,ofGetWidth()) - 100,ofRandom(100,ofGetHeight())-100,0,0);
-    setInitialCondition(ofGetWidth() / 2, ofGetHeight() / 2 - ttfword.getLineHeight() / 2, 0, 0);
+
+    setInitialCondition(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()), 0, 0);
     damping = 0.02f;
-//    color.r = ofRandom(255);
-//    color.g = ofRandom(255);
-//    color.b = ofRandom(255);
+    //    color.r = ofRandom(255);
+    //    color.g = ofRandom(255);
+    //    color.b = ofRandom(255);
     
     color.r = 0;
     color.g = 0;
     color.b = 0;
-
-
-
+    
+    
+    
 }
 
 //------------------------------------------------------------

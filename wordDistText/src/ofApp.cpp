@@ -6,12 +6,25 @@
 void ofApp::setup(){
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
-    startTime = 0.0f;
+    
+    string fileContents = ofFile("golddigger.txt").readToBuffer();
+    vector <string> lyrics = ofSplitString(fileContents, " ");
+    
+    
+    for (int i = 0; i < lyrics.size(); i++){
+        particleWord temp;
+        temp.word = lyrics[i];
+        temp.setup();
+        partWords.push_back(temp);
+        
+        cout << lyrics[i] << endl;
+    }
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    
     // on every frame
     // we reset the forces
     // add in any forces on the particle
@@ -25,7 +38,7 @@ void ofApp::update(){
     for (int i = 0; i < partWords.size(); i++){
         
         partWords[i].addRepulsionForce(mouseX, mouseY, 1000, 0.08f);
-
+        
         
         for (int j = 0; j < i; j++){
             if (partWords[i].getLevDistScale(partWords[j]) <= 0.02){
@@ -33,7 +46,8 @@ void ofApp::update(){
             } else {
                 partWords[i].addAttractionForce(partWords[j], 500, partWords[i].getLevDistScale(partWords[j]));
             }
-            cout << "word one: " << partWords[i].word << " word two: " << partWords[j].word << " " << partWords[i].getLevDistScale(partWords[j]) << endl;
+            cout << "word one: " << partWords[i].word << " word two: " << partWords[j].word << " "
+                << partWords[i].getLevDistScale(partWords[j]) << endl;
             partWords[i].addCounterClockwiseForce(partWords[j], 100, 0.05f);
         }
     }
@@ -50,70 +64,50 @@ void ofApp::update(){
 void ofApp::draw(){
     for (int i = 0; i < partWords.size(); i++){
         partWords[i].draw();
-        cout << "Word: " << i << " " << partWords[i].word << endl;
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    particleWord temp;
-    
-    if(key == OF_KEY_DEL || key == OF_KEY_BACKSPACE){
-        typeStr = typeStr.substr(0, typeStr.length()-1);
-    }
-    else if(key == OF_KEY_RETURN){
-        temp.word = typeStr;
-        temp.endTime = ofGetElapsedTimef();
-        temp.size = temp.endTime - startTime;
-        startTime = temp.endTime;
-        temp.setup();
-        partWords.push_back(temp);
-        typeStr.clear();
-    }else{
-        if( bFirst ){
-            typeStr.clear();
-            bFirst = false;
-        }
-        typeStr.append(1, (char)key);
-    }
+
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+void ofApp::dragEvent(ofDragInfo dragInfo){
+    
 }
