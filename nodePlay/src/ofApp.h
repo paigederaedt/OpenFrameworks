@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "particleWord.h"
 
 class ofApp : public ofBaseApp{
     
@@ -20,11 +19,12 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    vector <particleWord *> partWords;
-    string typeStr;
-    bool bFirst;
-    float startTime;
+    vector <ofNode> nodes;
     
-    ofTrueTypeFont ttf;
+    ofPolyline line;
+    
+    ofEasyCam cam;
+    
     
 };
+

@@ -63,7 +63,7 @@ int levenshtein(string word1, string word2) {
 //------------------------------------------------------------
 void particleWord::setup(){
     
-    ttfword.loadFont("Lekton-Regular.ttf", 100);
+    //ttfword.loadFont("Lekton-Regular.ttf", 100);
     
 }
 //------------------------------------------------------------
@@ -71,7 +71,7 @@ void particleWord::draw(){
     
     
     ofSetColor(255,0,0);
-    ofRectangle boundingBox = ttfword.getStringBoundingBox(word, 0, 0);
+    ofRectangle boundingBox = ttfword->getStringBoundingBox(word, 0, 0);
     ofPoint midPt;
     midPt.set( boundingBox.x + boundingBox.width / 2.0, boundingBox.y + boundingBox.height / 2.0);
     
@@ -82,7 +82,7 @@ void particleWord::draw(){
     ofPushMatrix(); {
         ofTranslate(pos.x, pos.y);
         ofScale(newSize, newSize);
-        ttfword.drawString(word, -midPt.x, -midPt.y);
+        ttfword->drawString(word, -midPt.x, -midPt.y);
         //ofRect(-midPt.x, midPt.y, boundingBox.width, boundingBox.height);
     } ofPopMatrix();
     

@@ -5,7 +5,7 @@ class particleWord {
 public:
     
     ofVec2f pos;
-    ofTrueTypeFont ttfword;
+    ofTrueTypeFont * ttfword;
     string word;
     float size;
     ofColor color;
