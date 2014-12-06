@@ -19,8 +19,8 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofImage image;
-    ofMesh mesh;
+    ofSpherePrimitive sphere;
     ofEasyCam easyCam;
+    //vector < ofMeshFace > triangles;
     
 };

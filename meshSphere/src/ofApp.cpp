@@ -3,53 +3,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-//    image.loadImage("chauhanfam.jpg");
-//    image.resize(200,200);
-    mesh.setMode(OF_PRIMITIVE_POINTS);
-    
+    sphere.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
+//    sphere.setRadius(100);
 
-    
-    for (int i = 0; i < 100; i++){
-        //float add = ofNoise(i/10.0f, ofGetElapsedTimef() * 2);
-        float x = 400 * sin((i / 100.0) * PI) * cos((i / 100.0) * TWO_PI);
-        float y = 400 * sin((i / 100.0) * PI) * sin((i / 100.0) * TWO_PI);
-        float z = 400 * cos((i / 100.0) * PI);
-        ofVec3f pos(x,y,z);
-        mesh.addVertex(pos);
-        mesh.addColor(ofColor(ofRandom(255),ofRandom(255),ofRandom(255)));
-    }
-    
-    
-//    float intensityThreshold = 150.0;
-//    for (int x = 0; x < image.getWidth(); ++x){
-//        for (int y = 0; y < image.getHeight(); ++y){
-//            ofColor c = image.getColor(x, y);
-//            float intensity = c.getLightness();
-//            if (intensity >= intensityThreshold){
-//                float saturation = c.getSaturation();
-//                float z = ofMap(saturation,0,255,-100,100);
-//                ofVec3f pos(4 * x,4 * y,z);
-//                mesh.addVertex(pos);
-//                mesh.addColor(c);
-//            }
-//        }
-//    }
-    
-//    float connectionDistance = 30.0;
-//    int numVerts = mesh.getNumVertices();
-//    for (int a = 0; a < numVerts; ++a){
-//        ofVec3f verta = mesh.getVertex(a);
-//        for (int b = a + 1; b < numVerts; ++b){
-//            ofVec3f vertb = mesh.getVertex(b);
-//            float distance = verta.distance(vertb);
-//            if (distance <= connectionDistance){
-//                mesh.addIndex(a);
-//                mesh.addIndex(b);
-//            }
-//        }
-//    }
-//    
-//    cout << mesh.getNumVertices() << endl;
     
 }
 
@@ -62,13 +18,55 @@ void ofApp::update(){
 void ofApp::draw(){
 
     
-    ofBackground(0);
-    easyCam.begin();
-    //ofPushMatrix();
-    //ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
-    mesh.draw();
-    //ofPopMatrix();
-    easyCam.end();
+    float spinX = sin(ofGetElapsedTimef()*.35f);
+    float spinY = cos(ofGetElapsedTimef()*.075f);
+
+    
+    sphere.setPosition(ofGetWidth()*.2, ofGetHeight()*.75, 0);
+    sphere.rotate(spinX, 1.0, 0.0, 0.0);
+    sphere.rotate(spinY, 0, 1.0, 0.0);
+    
+    // get all the faces from the icoSphere, handy when you want to copy
+    // individual vertices or tweak them a little ;)
+//    vector<ofMeshFace> triangles = sphere.getMesh().getUniqueFaces();
+    
+    // now draw
+    sphere.draw();
+
+//    sphere.setPosition(ofGetWidth() / 2, ofGetHeight() / 2, 0);
+//    float spinX = sin(ofGetElapsedTimef()*.35f);
+//    float spinY = cos(ofGetElapsedTimef()*.075f);
+//    sphere.rotate(spinX, 1.0, 0.0, 0.0);
+//    sphere.rotate(spinY, 0, 1.0, 0.0);
+//    triangles = sphere.getMesh().getUniqueFaces();
+//    sphere.draw();
+    
+//
+//    sphere.setPosition(ofGetWidth()*.8f, ofGetHeight()*.25, 0);
+//    sphere.setRadius(200);
+//
+//    
+//
+//    sphere.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
+//
+//        ofFill();
+//        ofSetColor(255);
+//            float angle = ofGetElapsedTimef()*3.2;
+//            float strength = (sin( angle+.25 )) * .5f * 5.f;
+//            ofVec3f faceNormal;
+//            for(int i = 0; i < triangles.size(); i++ ) {
+//                // store the face normal here.
+//                // we change the vertices, which makes the face normal change
+//                // every time that we call getFaceNormal //
+//                faceNormal = triangles[i].getFaceNormal();
+//                for(int j = 0; j < 3; j++ ) {
+//                    triangles[i].setVertex( j, triangles[i].getVertex(j) + faceNormal * strength);
+//                }
+//            }
+//            sphere.getMesh().setFromTriangles( triangles );
+//    
+//        sphere.draw();
+    
 }
 
 //--------------------------------------------------------------

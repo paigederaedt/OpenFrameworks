@@ -347,7 +347,10 @@ float particleWord::getLevDistScale(particleWord &p){
     string wordString;
     wordString = p.word;
     int length = levenshtein(wordString, word);
-    if (length >= 15){
+    if (length == 0){
+        return 0;
+    }
+    if(length >= 15){
         length = 15;
     }
     //return ofMap(length/1.0f, 0, 20, 0.01f, 0.09f);
